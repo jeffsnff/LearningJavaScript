@@ -1,6 +1,7 @@
 let result = 10;
-let numberEntered = 0;
+let numberEntered = 5;
 
-result = result + 14;
+result = result + numberEntered;
+let calculationDescription = `Some Text Here ${numberEntered}`;
 
-outputResult(result, '')
+outputResult(result, `${calculationDescription}`);
