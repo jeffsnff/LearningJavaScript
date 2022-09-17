@@ -7,10 +7,15 @@ subtractBtn.addEventListener('click', subtract);
 multiplyBtn.addEventListener('click', multiply);
 divideBtn.addEventListener('click', divide);
 
+// This is a line comment
+/*
+	This is a block comment
+*/
 
-// adds user input to previous result
+
+
 function add() {
-	allTheCode(userInput, '+');
+	allTheCode(userInput, '+'); // located in vendor.js file
 	result = result + userNumber;
 }
 
