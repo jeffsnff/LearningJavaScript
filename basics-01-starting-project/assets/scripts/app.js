@@ -1,26 +1,52 @@
 let result = 0;
-let calculationDescription = `The numbers, ${result} and ${userInput.value} equal : `;
+let userNumber;
+let descript = '';
 
 addBtn.addEventListener('click', add);
+subtractBtn.addEventListener('click', subtract);
+multiplyBtn.addEventListener('click', multiply);
+divideBtn.addEventListener('click', divide);
 
-outputResult(result, `${calculationDescription}`);
 
 // Functions go here
 
+// converts user input to a number as well makes sure userInput is a number if a empty string
+function conversion(userInput) {
+	if(userInput === ''){
+		return userNumber = 0;
+	}else{
+		return userNumber = parseFloat(userInput);
+	}
+}
+// creates description
+function calcDescrip(result, symbol, userNumber){
+	return descript = `${result} ${symbol} ${userNumber}`;
+}
+
+// does all the work
+function allTheCode(userInput, symbol){
+	conversion(userInput.value);
+	calcDescrip(result, symbol, userNumber);
+  outputResult(result, `${descript}`);
+}
+
+// adds user input to previous result
 function add() {
-  result = result + userInput.value;
-  outputResult(result, `${calculationDescription}`);
+	allTheCode(userInput, '+');
+	result = result + userNumber;
 }
 
-function subtract(num1, num2) {
-  const answer = num1 - num2;
-  return answer;
+function subtract() {
+	allTheCode(userInput, '-');
+	result = result - userNumber;
 }
 
-function multiply(num1, num2) {
-  return (result = num1 * num2);
+function multiply() {
+	allTheCode(userInput, '*');
+	result = result * userNumber;
 }
 
-function divide(num1, num2) {
-  return num1 / num2;
+function divide() {
+	allTheCode(userInput, '/');
+	result = result / userNumber;
 }
