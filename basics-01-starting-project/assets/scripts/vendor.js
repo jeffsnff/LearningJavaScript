@@ -13,3 +13,22 @@ function outputResult(result, text) {
   currentCalculationOutput.textContent = text;
 }
 
+// converts user input to a number as well makes sure userInput is a number if a empty string
+function conversion(userInput) {
+	if(userInput === ''){
+		return userNumber = 0;
+	}else{
+		return userNumber = parseFloat(userInput);
+	}
+}
+// creates description
+function calcDescrip(result, symbol, userNumber){
+	return descript = `${result} ${symbol} ${userNumber}`;
+}
+
+// does all the work
+function allTheCode(userInput, symbol){
+	conversion(userInput.value);
+	calcDescrip(result, symbol, userNumber);
+  outputResult(result, `${descript}`);
+}
