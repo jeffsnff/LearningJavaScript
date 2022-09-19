@@ -15,9 +15,9 @@ function outputResult(result, text) {
 // Checks user input and converts to number
 function conversion(userInput) {
 	if(userInput === ''){
-		return userNumber = 0;
+		 userNumber = 0;
 	}else{
-		return userNumber = parseFloat(userInput);
+		 userNumber = parseFloat(userInput);
 	}
 }
 // creates description for calculation

@@ -25,11 +25,17 @@ function subtract() {
 }
 
 function multiply() {
+	if(isNaN(result)){
+		result = 0;
+	}
 	allTheCode(userInput, '*');
 	result = result * userNumber;
 }
 
 function divide() {
+	if(isNaN(result)){
+		result = 0;
+	}
 	allTheCode(userInput, '/');
 	result = result / userNumber;
 }
