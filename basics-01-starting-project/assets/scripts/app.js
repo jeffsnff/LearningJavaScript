@@ -19,6 +19,7 @@ function add() {
   allTheCode(userInput, symbol);
   result = calculation(symbol, prevResult, userNumber);
   outputResult(result, `${descript}`);
+  writeToLog(symbol, prevResult, userNumber, result)
 }
 
 function subtract() {
@@ -27,6 +28,7 @@ function subtract() {
   allTheCode(userInput, symbol);
   result = calculation(symbol, prevResult, userNumber);
   outputResult(result, `${descript}`);
+  writeToLog(symbol, prevResult, userNumber, result)
 }
 
 function multiply() {
@@ -38,6 +40,7 @@ function multiply() {
   allTheCode(userInput, symbol);
   result = calculation(symbol, prevResult, userNumber);
   outputResult(result, `${descript}`);
+  writeToLog(symbol, prevResult, userNumber, result)
 }
 
 function divide() {
@@ -49,4 +52,5 @@ function divide() {
   allTheCode(userInput, symbol);
   result = calculation(symbol, prevResult, userNumber);
   outputResult(result, `${descript}`);
+  writeToLog(symbol, prevResult, userNumber, result)
 }

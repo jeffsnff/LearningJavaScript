@@ -44,6 +44,7 @@ function writeToLog(operationID, prevNumber, userNumber, result) {
     userNumber: userNumber,
     result: result,
   };
+  console.log(logEntry)
 }
 
 // combines all the functions used into a single function
