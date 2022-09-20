@@ -14,20 +14,41 @@ function outputResult(result, text) {
 
 // Checks user input and converts to number
 function conversion(userInput) {
-	if(userInput === ''){
-		 userNumber = 0;
-	}else{
-		 userNumber = parseFloat(userInput);
-	}
+  if (userInput === '') {
+    return (userNumber = 0);
+  } else {
+    return (userNumber = parseFloat(userInput));
+  }
 }
 // creates description for calculation
-function calcDescrip(result, symbol, userNumber){
-	return descript = `${result} ${symbol} ${userNumber}`;
+function calcDescrip(result, symbol, userNumber) {
+  return (descript = `${result} ${symbol} ${userNumber}`);
+}
+
+function calculation(calc, prevNumber, userNumber) {
+  if (calc == '+') {
+    return prevNumber + userNumber;
+  } else if (calc == '-') {
+    return prevNumber - userNumber;
+  } else if (calc == '*') {
+    return prevNumber * userNumber;
+  } else if (calc == '/') {
+    return prevNumber / userNumber;
+  }
+}
+
+function writeToLog(operationID, prevNumber, userNumber, result) {
+  const logEntry = {
+    operation: operationID,
+    prevNumber: prevNumber,
+    userNumber: userNumber,
+    result: result,
+  };
 }
 
 // combines all the functions used into a single function
-function allTheCode(userInput, symbol){
-	conversion(userInput.value);
-	calcDescrip(result, symbol, userNumber);
-  outputResult(result, `${descript}`);
+function allTheCode(userInput, symbol) {
+  conversion(userInput.value);
+  calcDescrip(result, symbol, userNumber);
+  // outputResult(result, `${descript}`);
 }
