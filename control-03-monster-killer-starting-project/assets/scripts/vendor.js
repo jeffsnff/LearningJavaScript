@@ -14,31 +14,16 @@ function adjustHealthBars(maxLife) {
   playerHealthBar.value = maxLife;
 }
 
-function dealMonsterDamage(damage, perryChance) {
-  // Perry Chance
-  
-  if (perry(perryChance)) {
-    console.log('The Monster Perried your attack!');
-    increaseMonsterHealth(Math.random(10));
-    console.log('The Monster Healed!');
-    return;
-  } else {
-    const dealtDamage = Math.random() * damage;
-    monsterHealthBar.value = +monsterHealthBar.value - dealtDamage;
-    return dealtDamage;
-  }
+function dealMonsterDamage(damage) {
+  const dealtDamage = Math.random() * damage;
+  monsterHealthBar.value = +monsterHealthBar.value - dealtDamage;
+  return dealtDamage;
 }
 
-function dealPlayerDamage(damage, perryChance) {
-  // Perry Chance
-  if (perry(perryChance)) {
-    console.log("You Perried the Monsters'!");
-    return;
-  } else {
-    const dealtDamage = Math.random() * damage;
-    playerHealthBar.value = +playerHealthBar.value - dealtDamage;
-    return dealtDamage;
-  }
+function dealPlayerDamage(damage) {
+  const dealtDamage = Math.random() * damage;
+  playerHealthBar.value = +playerHealthBar.value - dealtDamage;
+  return dealtDamage;
 }
 
 function increasePlayerHealth(healValue) {
@@ -60,12 +45,4 @@ function setPlayerHealth(health) {
 
 function increaseMonsterHealth(health) {
   monsterHealthBar.value = +monsterHealthBar.value + health;
-}
-
-function perry(chance) {
-  let perryChance = Math.floor(Math.random(10) * 10 - chance);
-  console.log(perryChance)
-  if (perryChance >= 5) {
-    return true;
-  }
 }
