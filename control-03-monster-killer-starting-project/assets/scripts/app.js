@@ -18,6 +18,27 @@ function attackHandler(mode) {
   attack('ATTACK');
 }
 
+function monsterAttack(){
+  const monsterAttackDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
+  playerHealth -= monsterAttackDamage;
+  addLog(`Monster Attacked for ${monsterAttackDamage}`)
+}
+
+function playerAttack(maxDamage){
+  const playerAttackDamage = dealMonsterDamage(maxDamage);
+  monsterHealth -= playerAttackDamage;
+}
+
+function winOrLose(){
+  if (monsterHealth <= 0) {
+    alert('The Monster has been vanquished!');
+    addLog(`Player has succeeded`)
+  } else if (playerHealth <= 0) {
+    alert('You have been vanquished!');
+    addLog(`Player has died`)
+  }
+}
+
 function attack(mode) {
   let maxDamage
   if (mode === 'ATTACK') {
@@ -30,20 +51,12 @@ function attack(mode) {
   }
 
   if (playerHealth > 0 && monsterHealth > 0) {
-    const playerAttackDamage = dealMonsterDamage(maxDamage);
-    monsterHealth -= playerAttackDamage;
-    const monsterAttackDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
-    playerHealth -= monsterAttackDamage;
-    console.log(maxDamage);  
+    // const playerAttackDamage = dealMonsterDamage(maxDamage);
+    // monsterHealth -= playerAttackDamage;
+    playerAttack(maxDamage)
+    monsterAttack()
   }
-
-  if (monsterHealth <= 0) {
-    alert('The Monster has been vanquished!');
-    addLog(`Player has succeeded`)
-  } else if (playerHealth <= 0) {
-    alert('You have been vanquished!');
-    addLog(`Player has died`)
-  }
+  winOrLose()
 }
 
 function strongAttackHandler() {
@@ -51,14 +64,23 @@ function strongAttackHandler() {
 }
 
 function healPlayer() {
+
+  if(playerHealth >= chosenMaxLife){
+    console.log("You are at max health!")
+    return
+  }
   restoreHealth = Math.floor(Math.random(10) * 10);
+  // increases player health bar
   increasePlayerHealth(restoreHealth);
+  // increases player health
   playerHealth += restoreHealth;
+  
   addLog(`Player Healed : ${restoreHealth}`)
+  monsterAttack()
+  winOrLose()
 }
 
-function showLog(action) {
-  // console.log('Show Logs');
+function showLog() {
   console.log(logs)
 }
 
