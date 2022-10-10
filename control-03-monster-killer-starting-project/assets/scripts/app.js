@@ -9,12 +9,12 @@ let logs = [];
 attackBtn.addEventListener('click', attackHandler);
 strongAttackBtn.addEventListener('click', strongAttackHandler);
 healBtn.addEventListener('click', healPlayer);
-logBtn.addEventListener('click', showLog);
+logBtn.addEventListener('click', showLogHandler);
 
 // Sets users health
 adjustHealthBars(chosenMaxLife);
 
-function attackHandler(mode) {
+function attackHandler() {
   attack('ATTACK');
 }
 
@@ -34,10 +34,10 @@ function playerAttack(maxDamage) {
 }
 
 function winOrLose() {
-  if (monsterHealth <= 0) {
+  if (monsterHealth <= 0 && playerHealth > 0) {
     alert('The Monster has been vanquished!');
     addLog(`Player has succeeded`);
-  } else if (playerHealth <= 0) {
+  } else if (playerHealth <= 0 && monsterHealth > 0) {
     alert('You have been vanquished!');
     addLog(`Player has died`);
   }
@@ -65,7 +65,6 @@ function attack(mode) {
 }
 
 function healPlayer() {
-  console.log(playerHealth)
   if (playerHealth <= 0 || monsterHealth <= 0) {
     return;
   }
@@ -84,7 +83,8 @@ function healPlayer() {
   winOrLose();
 }
 
-function showLog() {
+
+function showLogHandler() {
   console.log(logs);
 }
 
