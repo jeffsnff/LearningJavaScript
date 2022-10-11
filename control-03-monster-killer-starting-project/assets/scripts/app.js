@@ -1,5 +1,7 @@
 const MONSTER_ATTACK_VALUE = 13;
 const ATTACK_VALUE = 10;
+const MODE_ATTACK = 'ATTACK';
+const MODE_STRONG_ATTACK = 'STRONG_ATTACK';
 let hasBonusLife = true;
 let gameOver = false;
 let startGame = false;
@@ -42,11 +44,11 @@ function reset() {
 }
 
 function attackHandler() {
-  attack('ATTACK');
+  attack(MODE_ATTACK);
 }
 
 function strongAttackHandler() {
-  attack('STRONG_ATTACK');
+  attack(MODE_STRONG_ATTACK);
 }
 
 function monsterAttack() {
@@ -92,13 +94,13 @@ function attack(mode) {
   let maxDamage;
 
   // determines which attack value to use normal or strong
-  if (mode === 'ATTACK') {
+  if (mode === MODE_ATTACK) {
     maxDamage = ATTACK_VALUE;
-    addLog(`Player ATTACKED for ${maxDamage}`);
-  } else if (mode === 'STRONG_ATTACK') {
+    addLog(`Player ${MODE_ATTACK} for ${maxDamage}`);
+  } else if (mode === MODE_STRONG_ATTACK) {
     let critical = Math.floor(Math.random(10) * 10);
     maxDamage = ATTACK_VALUE + critical;
-    addLog(`Player STRONG ATTACKED for ${maxDamage}`);
+    addLog(`Player ${MODE_STRONG_ATTACK} for ${maxDamage}`);
   }
 
   // only runs if both monster and player are alive
