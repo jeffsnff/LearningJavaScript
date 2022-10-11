@@ -1,9 +1,12 @@
 const MONSTER_ATTACK_VALUE = 13;
 const ATTACK_VALUE = 10;
-let chosenMaxLife = 100;
-let playerHealth = chosenMaxLife;
-let monsterHealth = chosenMaxLife;
+let hasBonusLife = true;
+let gameOver = false;
+let startGame = false;
 let logs = [];
+let chosenMaxLife;
+let playerHealth;
+let monsterHealth;
 
 // Event Listeners
 attackBtn.addEventListener('click', attackHandler);
@@ -12,7 +15,31 @@ healBtn.addEventListener('click', healPlayer);
 logBtn.addEventListener('click', showLogHandler);
 
 // Sets users health
-adjustHealthBars(chosenMaxLife);
+while (!startGame) {
+  onStart();
+}
+
+function onStart() {
+  const userValue = prompt('What is the maximum life for the monster and you?');
+  chosenMaxLife = parseInt(userValue);
+
+  if (isNaN(chosenMaxLife) || chosenMaxLife <= 0) {
+    chosenMaxLife = 100;
+  }
+
+  playerHealth = chosenMaxLife;
+  monsterHealth = chosenMaxLife;
+  adjustHealthBars(chosenMaxLife);
+  startGame = true;
+}
+function reset() {
+  playerHealth = chosenMaxLife;
+  monsterHealth = chosenMaxLife;
+  hasBonusLife = true;
+  gameOver = false;
+  resetGame(chosenMaxLife);
+  addLog(`Game has been reset`);
+}
 
 function attackHandler() {
   attack('ATTACK');
@@ -34,12 +61,30 @@ function playerAttack(maxDamage) {
 }
 
 function winOrLose() {
+  if (playerHealth <= 0 && hasBonusLife) {
+    alert('The Lord has GIVITH!');
+    playerHealth = chosenMaxLife / 2;
+    increasePlayerHealth(playerHealth);
+    hasBonusLife = false;
+    bonusLifeEl.innerHTML = 0;
+    addLog(`Player has been healed 100%!`);
+  }
   if (monsterHealth <= 0 && playerHealth > 0) {
     alert('The Monster has been vanquished!');
     addLog(`Player has succeeded`);
+    gameOver = true;
   } else if (playerHealth <= 0 && monsterHealth > 0) {
     alert('You have been vanquished!');
     addLog(`Player has died`);
+    gameOver = true;
+  } else if (playerHealth <= 0 && monsterHealth <= 0) {
+    alert('The realm is safe from the monster, but you have died in battle!');
+    addLog(`The monster has been slain, but you lost your life doing so.`);
+    gameOver = true;
+  }
+
+  if (gameOver) {
+    reset();
   }
 }
 
@@ -82,7 +127,6 @@ function healPlayer() {
   monsterAttack();
   winOrLose();
 }
-
 
 function showLogHandler() {
   console.log(logs);
